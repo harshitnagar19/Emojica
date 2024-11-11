@@ -13,6 +13,7 @@ import about from "../assests/Dashboard/about.png"
 import search from "../assests/Dashboard/search.png"
 import aero from "../assests/hero/aero.png"
 import axios from "axios";
+import Detail from "./Detail";
 
 function DashBoard() {
   // const BASE_URL = `https://emoji-api.com`
@@ -20,6 +21,7 @@ function DashBoard() {
 
   const [emojis, setEmojis] = useState([]);
   const [active, setActive] = useState(0)
+  const [detail , setDetail] = useState(true)
   const [copy, setcopy] = useState(false)
   const [deviceDropDownActive, setDeviceDropDownActive] = useState(false)
   const ind = [0,1,2,3,4,5,6,7,8]
@@ -29,7 +31,7 @@ function DashBoard() {
     ind.forEach((num)=>{
       if(num == active){
         setEmojis([])
-        axios.get(`/categories/${endPoint[num]}?access_key=86aabdbdaeb9e764821ce74a5f10900f5de41c7a`).then((response) => {
+        axios.get(`https://emoji-api.com/categories/${endPoint[num]}?access_key=86aabdbdaeb9e764821ce74a5f10900f5de41c7a`).then((response) => {
           setEmojis(response.data);  // Set emojis from response
         })
         .catch((error) => {
@@ -111,6 +113,7 @@ function DashBoard() {
         </div>
       </div>
       {/* top nav */}
+      {detail?<Detail/>:
       <div className="w-full">
         <div className="ml-12 mt-12 mr-12 flex justify-between ">
           {/* drop down */}
@@ -177,7 +180,7 @@ function DashBoard() {
           })}
           
         </div>
-      </div>
+      </div>}
     </div>
   );
 }

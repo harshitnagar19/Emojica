@@ -6,6 +6,7 @@ module.exports = {
       fontFamily: {
         'century-old':"Century Old Style Std",
         'johnston': "Johnston ITC Std",
+        'nunito': ['Nunito', 'sans-serif'],
       },
       boxShadow: {
         'custom': '2px 4px 14px 0px rgba(0, 0, 0, 0.15)',
