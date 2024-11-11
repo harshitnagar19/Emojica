@@ -12,6 +12,9 @@ module.exports = {
         'custom-shadow': '40px 40px 100px 0px rgba(24, 48, 63, 0.16)', // Custom shadow
         'custom-top': '0px -20px 17px -14px rgba(0, 0, 0, 0.05)', // 0D in hex is approximately 5% opacity
       },
+      backgroundColor: {
+        'custom-gray': 'rgba(223, 222, 222, 0.4)',
+      },
      
     },
   },
