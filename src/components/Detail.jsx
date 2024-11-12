@@ -1,16 +1,29 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import search from "../assests/Dashboard/search.png"
 import fav from "../assests/detail/fav.png"
 import favGold from "../assests/detail/favGold.png"
 import dots from "../assests/detail/dots.png"
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
-import { ChevronDownIcon } from '@heroicons/react/20/solid'
-// import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
-// import { ChevronDownIcon } from '@heroicons/react/20/solid'
-const Detail = () => {
+import datamuse from 'datamuse';
+const Detail = ({detail}) => {
     const [copy, setCopy] = useState(false)
-    const [dropDown, setDropDown] = useState(false)
-    const im = '😀'
+    const [word, setWord] = useState('node');
+    const [relatedWords, setRelatedWords] = useState([]);
+
+    const im = detail.character
+    const lastNumberIndex = detail.unicodeName.search(/\d(?!.*\d)/);
+    const name = detail.unicodeName.slice(lastNumberIndex + 1).trim() ;
+    const group = detail.group
+    console.log(detail)
+    
+    useEffect(()=>{
+        const getRelatedWords = async (word) => {
+            const response = await datamuse.request(`/words?rel_syn=${word}`);
+            setRelatedWords(response);
+          };
+    },[])
+
+
     return (
         <div className="w-full">
             {/* top (search and copy) */}
@@ -57,9 +70,9 @@ const Detail = () => {
                 </div>
                 <div className="mt-9 w-[30%] font-nunito text-[18px] font-medium leading-[26px] tracking-[0.01em] text-left ">
                     <h2 className="font-medium">Name</h2>
-                    <p className="pb-8 pt-2 text-xl font-bold leading-6 tracking-[0.01em] text-left">Grinning Face</p>
+                    <p className="pb-8 pt-2 text-xl font-bold leading-6 tracking-[0.01em] text-left">{name}</p>
                     <h2 className="font-medium">Category</h2>
-                    <p className="pb-8 pt-2 text-xl font-bold leading-6 tracking-[0.01em] text-left">Smileys & Emotion</p>
+                    <p className="pb-8 pt-2 text-xl font-bold leading-6 tracking-[0.01em] text-left">{group}</p>
                     <h2 className="font-medium">Keywords</h2>
                     <p className=" pt-2 text-xl font-bold leading-6 tracking-[0.01em] text-left">Grinning Face, Face, Smile, Happy, Joy, D, Grin</p>
                 </div>
