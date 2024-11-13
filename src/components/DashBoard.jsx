@@ -14,11 +14,10 @@ import search from "../assests/Dashboard/search.png"
 import aero from "../assests/hero/aero.png"
 import axios from "axios";
 import Detail from "./Detail";
+import {useNavigate} from "react-router-dom"
 
 function DashBoard() {
-  // const BASE_URL = `https://emoji-api.com`
-  // const key = '86aabdbdaeb9e764821ce74a5f10900f5de41c7a'
-
+  const navigate = useNavigate()
   const [emojis, setEmojis] = useState([]);
   const [active, setActive] = useState(0)
   const [detail, setDetail] = useState(false)
@@ -105,9 +104,15 @@ function DashBoard() {
 
         </div>
         <div className={'border-b-4 bg-gray-100 shadow-custom'}>
-          <div className="ml-8 mr-16  pt-5 flex gap-3 items-center ">
+          <div className="ml-8 mr-16  pt-5 flex gap-3 items-center "
+          
+          >
             <img src={fav} className="object-contain pl-2 pt-1" alt="" />
-            <p className={"font-bold text-3xl font-century-old"}>Favourite</p>
+            <p className={"font-bold text-3xl font-century-old"}
+            onClick={(()=>{
+              navigate("/fav")
+            })}
+            >Favourite</p>
           </div>
           <div className="ml-8 mr-16  py-5 flex gap-3 items-center ">
             <img src={about} className="object-contain pl-2 pt-1" alt="" />
@@ -117,7 +122,7 @@ function DashBoard() {
       </div>
       {/* top nav */}
       {detail ? <Detail detail={detailData}/> :
-        <div className="w-full">
+        <div className="w-fit">
           <div className="ml-12 mt-12 mr-12 flex justify-between ">
             {/* drop down */}
             <div className="max-w-fit">
@@ -164,9 +169,9 @@ function DashBoard() {
             <div className={`py-5 px-6 box-bg-grad rounded-xl ${copy ? "block" : "hidden"}`}><div className="flex gap-2 text-2xl pt-1"><p className="rotate-180">👎</p><p className="text-2xl font-bold">Copied</p></div></div>
           </div>
           {/* emojis */}
-          <div className={`ml-12 mr-12 w-full flex flex-wrap gap-5 mt-12`}>
+          <div className={`ml-12 mr-5 w-contain items-stretch flex flex-wrap gap-6 mt-12`}>
             {emojis.length == 0 ? <div>Loading...</div> : emojis?.map((el) => {
-              return (<div key={el.codePoint} className="relative w-[100px] h-[104px] bg-yellow-50 rounded-lg flex flex-col items-center justify-center shadow-md transition-transform transform hover:scale-125">
+              return (<div key={el.codePoint} className="relative w-[10%] h-[109px] bg-yellow-50 rounded-lg flex flex-col items-center justify-center shadow-md transition-transform transform hover:scale-125">
                 {/* Three dots at the top center */}
                 <div className="absolute flex space-x-0.5 mt-1 -top-2 bg-gray-300 px-2 py-1 rounded"
                   onClick={((e) => {

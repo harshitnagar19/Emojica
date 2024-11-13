@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Landing from './components/Landing';
 import DashBoard from './components/DashBoard';
 import Detail from './components/Detail';
+import Favourites from './components/Favourites';
 
 function App() {
   return (
@@ -11,7 +12,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Landing />} />
           <Route path="dashboard" element={<DashBoard />} />
-          {/* <Route path="" element={<Detail/>} /> */}
+          <Route path="fav" element={<Favourites></Favourites>} />
         </Routes>
       </BrowserRouter>
   );

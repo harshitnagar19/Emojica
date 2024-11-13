@@ -23,14 +23,14 @@ const Detail = ({ detail }) => {
         if (storage == null) {
             setFavourite(false);
         } else {
-            let result = storage.filter((el) => unicodeName === el);
+            let result = storage.filter((el) => im === el);
             setFavourite(result.length !== 0);
         }
     }, [existingData]);
 
     const removeDataFromLocalStorage = () => {
         setExistingData(prevData => {
-            const newData = prevData.filter(item => item !== unicodeName);
+            const newData = prevData.filter(item => item !== im);
             localStorage.setItem("fav", JSON.stringify(newData));
             setFavourite(false);
             return newData;
@@ -42,8 +42,8 @@ const Detail = ({ detail }) => {
         setExistingData(storage);
         setExistingData(prevData => {
             const newData = [...prevData];
-            if (!newData.includes(unicodeName)) {
-                newData.push(unicodeName);
+            if (!newData.includes(im)) {
+                newData.push(im);
                 localStorage.setItem("fav", JSON.stringify(newData));
             }
             return newData;
